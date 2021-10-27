@@ -33,18 +33,21 @@ client.connect(err => {
       })
   })
 
+  
   app.get('/products', (req, res) => {
     const search = req.query.search;
     products.find({name: {regex: search}})
-      .toArray((err, items) => {
-        res.send(items);
-      }) 
-  })
+    products.find({})
+    .toArray( (err, documents) => {
+        res.send(documents);
+    })
+})
+
 
   app.get('/product/:key', (req, res) => {
     products.find({key: req.params.key})
-      .toArray((err, items) => {
-        res.send(items[0]);
+      .toArray((err, documents) => {
+        res.send(documents[0]);
       })
   })
 
@@ -65,7 +68,7 @@ client.connect(err => {
       })
   })
 
-
+//
 })
 
 
